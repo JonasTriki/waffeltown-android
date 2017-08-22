@@ -8,9 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">#404040</item>
     </style>
-    <!--<style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
-    </style>-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <!-- android:textColorPrimary is the color of the titleResId text in the Toolbar  -->
         <item name="android:textColorPrimary">@android:color/white</item>
