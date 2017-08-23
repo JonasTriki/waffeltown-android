@@ -1,8 +1,12 @@
-package no.triki.waffeltown.models;
+package no.triki.waffeltown.network;
 
 import java.util.ArrayList;
 
-import no.triki.waffeltown.network.ApiManager;
+import no.triki.waffeltown.models.Waffel;
+import no.triki.waffeltown.models.WaffelComment;
+import no.triki.waffeltown.models.WaffelData;
+import no.triki.waffeltown.models.WaffelRestTypes;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,14 +57,38 @@ public class WaffelDataReceiver {
         });
     }
 
-    public void recognizeWaffel() {
-        // TODO: 22.08.2017 Figure out how to do this
-        //ApiManager.getWaffelTownService().recognizeWaffel();
+    public void recognizeWaffel(RequestBody image) {
+        ApiManager.getWaffelTownService().recognizeWaffel(image).enqueue(new Callback<WaffelData<Boolean>>() {
+
+            @Override
+            public void onResponse(Call<WaffelData<Boolean>> call, Response<WaffelData<Boolean>> response) {
+                if (response.isSuccessful()) {
+                    listener.onWaffelDataReceived(response.body(), WaffelRestTypes.RECOGNIZE_WAFFEL);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WaffelData<Boolean>> call, Throwable t) {
+                listener.onWaffelDataError(t, WaffelRestTypes.RECOGNIZE_WAFFEL);
+            }
+        });
     }
 
-    public void postWaffel(int rating, String description, String topping, int consistency) {
-        // TODO: 22.08.2017 Figure out how to do it with the image
-        //ApiManager.getWaffelTownService().postWaffel(rating, description, topping, consistency);
+    public void postWaffel(int rating, String description, String topping, int consistency, RequestBody image) {
+        ApiManager.getWaffelTownService().postWaffel(rating, description, topping, consistency, image).enqueue(new Callback<WaffelData<Waffel>>() {
+
+            @Override
+            public void onResponse(Call<WaffelData<Waffel>> call, Response<WaffelData<Waffel>> response) {
+                if (response.isSuccessful()) {
+                    listener.onWaffelDataReceived(response.body(), WaffelRestTypes.POST_WAFFEL);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WaffelData<Waffel>> call, Throwable t) {
+                listener.onWaffelDataError(t, WaffelRestTypes.POST_WAFFEL);
+            }
+        });
     }
 
     public void upwaffel(String id, String deviceId) {

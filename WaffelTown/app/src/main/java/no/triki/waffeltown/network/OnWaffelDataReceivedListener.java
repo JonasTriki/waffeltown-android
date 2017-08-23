@@ -1,4 +1,7 @@
-package no.triki.waffeltown.models;
+package no.triki.waffeltown.network;
+
+import no.triki.waffeltown.models.WaffelData;
+import no.triki.waffeltown.models.WaffelRestTypes;
 
 /**
  * Created by Jonas Triki on 22.08.2017.

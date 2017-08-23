@@ -27,38 +27,38 @@ public class ApiManager {
 
     public interface WaffelTownAPI {
 
-        @GET("/")
+        @GET("/api")
         Call<WaffelData<ArrayList<Waffel>>> getWaffels();
 
-        @GET("/{id}")
+        @GET("/api/{id}")
         Call<WaffelData<Waffel>> getWaffel(@Path("id") String id);
 
         @Multipart
-        @GET("/vision")
+        @POST("/api/vision")
         Call<WaffelData<Boolean>> recognizeWaffel(@Part("image") RequestBody image);
 
         @Multipart
-        @POST("/")
+        @POST("/api")
         Call<WaffelData<Waffel>> postWaffel(@Body int rating,
                                             @Body String description,
                                             @Body String topping,
                                             @Body int consistency,
                                             @Part("image") RequestBody image);
 
-        @POST("/{id}/upwaffel")
+        @POST("/api/{id}/upwaffel")
         Call<WaffelData<Boolean>> upwaffel(@Path("id") String id,
                                            @Body String device_id);
 
-        @POST("/{id}/downwaffel")
+        @POST("/api/{id}/downwaffel")
         Call<WaffelData<Boolean>> downwaffel(@Path("id") String id,
                                              @Body String device_id);
 
-        @POST("/{id}/comment")
+        @POST("/api/{id}/comment")
         Call<WaffelData<WaffelComment>> comment(@Path("id") String id,
                                                 @Body String comment);
     }
 
-    public static final String WAFFEL_TOWN_URL = "https://waffel-town.triki.no/api";
+    public static final String WAFFEL_TOWN_URL = "https://waffel-town.triki.no/";
 
     private static Retrofit getInstance(String url) {
         Gson gson = new GsonBuilder()
