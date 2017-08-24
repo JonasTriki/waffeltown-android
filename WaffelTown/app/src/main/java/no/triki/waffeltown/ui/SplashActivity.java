@@ -40,7 +40,7 @@ public class SplashActivity  extends AppCompatActivity implements ISplashView {
     @Override
     public void onWaffelsReady(ArrayList<Waffel> waffels) {
         Intent i = new Intent(this, MainActivity.class);
-        i.putParcelableArrayListExtra("toilets", waffels);
+        i.putParcelableArrayListExtra("waffels", waffels);
         startActivity(i);
         finish();
     }

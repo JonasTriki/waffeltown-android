@@ -12,6 +12,7 @@ import android.view.SurfaceView;
 
 import java.io.IOException;
 
+import no.triki.waffeltown.shared.utils.GlobalUtils;
 import no.triki.waffeltown.ui.CameraActivity;
 
 /**
@@ -105,5 +106,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void onPictureTaken(byte[] bytes, Camera camera) {
         listener.onWaffelCaptured(bytes);
+
+        // Stop camera.
+        camera.stopPreview();
+        camera.release();
+        this.camera = null;
     }
 }

@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Waffel Town</string>
+
+    <!-- MainActivity -->
     <string name="camera">Camera</string>
+
+    <!-- CameraActivity -->
+    <string name="check_image_waffel">Checking if image is waffel …</string>
+    <string name="waffel_not_recognized">Could not find waffel in captured image.</string>
+    <string name="waffel_desc">How was your Waffel?</string>
+    <string name="jam">Jam</string>
+    <string name="sour_cream">Sour cream</string>
+    <string name="cheese">Cheese</string>
+    <string name="add_topping">+ Topping</string>
+    <string name="crispy">Crispy</string>
+    <string name="alright">Alright</string>
+    <string name="wet">Wet</string>
+    <string name="post_waffel">Post Waffel</string>
 </resources>

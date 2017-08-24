@@ -1,5 +1,8 @@
 package no.triki.waffeltown.network;
 
+import android.util.Log;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import no.triki.waffeltown.models.Waffel;
@@ -69,6 +72,7 @@ public class WaffelDataReceiver {
 
             @Override
             public void onFailure(Call<WaffelData<Boolean>> call, Throwable t) {
+                t.printStackTrace();
                 listener.onWaffelDataError(t, WaffelRestTypes.RECOGNIZE_WAFFEL);
             }
         });

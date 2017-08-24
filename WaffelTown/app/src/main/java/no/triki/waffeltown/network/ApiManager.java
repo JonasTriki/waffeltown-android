@@ -27,33 +27,33 @@ public class ApiManager {
 
     public interface WaffelTownAPI {
 
-        @GET("/api")
+        @GET("api")
         Call<WaffelData<ArrayList<Waffel>>> getWaffels();
 
-        @GET("/api/{id}")
+        @GET("api/{id}")
         Call<WaffelData<Waffel>> getWaffel(@Path("id") String id);
 
         @Multipart
-        @POST("/api/vision")
-        Call<WaffelData<Boolean>> recognizeWaffel(@Part("image") RequestBody image);
+        @POST("api/vision")
+        Call<WaffelData<Boolean>> recognizeWaffel(@Part("image\"; filename=\"waffel.png\"") RequestBody image);
 
         @Multipart
-        @POST("/api")
+        @POST("api")
         Call<WaffelData<Waffel>> postWaffel(@Body int rating,
                                             @Body String description,
                                             @Body String topping,
                                             @Body int consistency,
-                                            @Part("image") RequestBody image);
+                                            @Part("image\"; filename=\"waffel.png\"") RequestBody image);
 
-        @POST("/api/{id}/upwaffel")
+        @POST("api/{id}/upwaffel")
         Call<WaffelData<Boolean>> upwaffel(@Path("id") String id,
                                            @Body String device_id);
 
-        @POST("/api/{id}/downwaffel")
+        @POST("api/{id}/downwaffel")
         Call<WaffelData<Boolean>> downwaffel(@Path("id") String id,
                                              @Body String device_id);
 
-        @POST("/api/{id}/comment")
+        @POST("api/{id}/comment")
         Call<WaffelData<WaffelComment>> comment(@Path("id") String id,
                                                 @Body String comment);
     }
