@@ -1,5 +1,8 @@
 package no.triki.waffeltown.camera;
 
+import android.graphics.Bitmap;
+import android.provider.Settings;
+
 import no.triki.waffeltown.models.Waffel;
 import no.triki.waffeltown.models.WaffelData;
 import no.triki.waffeltown.models.WaffelRestTypes;
@@ -35,7 +38,12 @@ public class CameraPresenter implements ICameraPresenter, OnWaffelDataReceivedLi
                 }
                 break;
             case POST_WAFFEL:
-                WaffelData<Waffel> postData = (WaffelData<Waffel>)data;
+                WaffelData<Boolean> postData = (WaffelData<Boolean>)data;
+                if (postData.getData() != null && postData.getData()) {
+                    view.onWaffelUploaded();
+                } else {
+                    view.onWaffelErrorUploading();
+                }
                 break;
         }
     }
@@ -48,5 +56,15 @@ public class CameraPresenter implements ICameraPresenter, OnWaffelDataReceivedLi
     @Override
     public void recognizeWaffel(byte[] data) {
         waffelDataReceiver.recognizeWaffel(GlobalUtils.byteArrayToImage(data));
+    }
+
+    @Override
+    public void uploadWaffel(int rating, String description, String topping, int consistency, Bitmap bitmap) {
+        waffelDataReceiver.postWaffel(
+                GlobalUtils.plainTextToRequestBody(Integer.toString(rating)),
+                GlobalUtils.plainTextToRequestBody(description),
+                GlobalUtils.jsonToRequestBody(topping),
+                GlobalUtils.plainTextToRequestBody(Integer.toString(consistency)),
+                GlobalUtils.byteArrayToImage(GlobalUtils.bitmapToByteArray(bitmap)));
     }
 }

@@ -78,18 +78,18 @@ public class WaffelDataReceiver {
         });
     }
 
-    public void postWaffel(int rating, String description, String topping, int consistency, RequestBody image) {
-        ApiManager.getWaffelTownService().postWaffel(rating, description, topping, consistency, image).enqueue(new Callback<WaffelData<Waffel>>() {
+    public void postWaffel(RequestBody rating, RequestBody description, RequestBody topping, RequestBody consistency, RequestBody image) {
+        ApiManager.getWaffelTownService().postWaffel(rating, description, topping, consistency, image).enqueue(new Callback<WaffelData<Boolean>>() {
 
             @Override
-            public void onResponse(Call<WaffelData<Waffel>> call, Response<WaffelData<Waffel>> response) {
+            public void onResponse(Call<WaffelData<Boolean>> call, Response<WaffelData<Boolean>> response) {
                 if (response.isSuccessful()) {
                     listener.onWaffelDataReceived(response.body(), WaffelRestTypes.POST_WAFFEL);
                 }
             }
 
             @Override
-            public void onFailure(Call<WaffelData<Waffel>> call, Throwable t) {
+            public void onFailure(Call<WaffelData<Boolean>> call, Throwable t) {
                 listener.onWaffelDataError(t, WaffelRestTypes.POST_WAFFEL);
             }
         });

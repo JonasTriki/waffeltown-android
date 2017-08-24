@@ -122,13 +122,12 @@
                     android:layout_weight="1">
 
                     <ScrollView
+                        android:id="@+id/svTopping"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_above="@+id/btnAddTopping"
-                        android:layout_below="@+id/tvTopping"
-                        android:layout_weight="1">
+                        android:layout_height="match_parent">
 
                         <LinearLayout
+                            android:id="@+id/listTopping"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -156,6 +155,7 @@
                 </RelativeLayout>
 
                 <RadioGroup
+                    android:id="@+id/rgConsistency"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
@@ -194,8 +194,6 @@
                     android:id="@+id/btnAddTopping"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
                     android:layout_weight="1"
                     android:text="@string/add_topping" />
 

@@ -47,7 +47,7 @@ public class Waffel implements Parcelable {
 
     @SerializedName("topping")
     @Expose
-    private String topping;
+    private ArrayList<String> topping;
 
     @SerializedName("consistency")
     @Expose
@@ -59,10 +59,16 @@ public class Waffel implements Parcelable {
 
     protected Waffel(Parcel in) {
         id = in.readString();
+        date = new Date(in.readLong());
+        comments = new ArrayList<>();
+        in.readTypedList(comments, WaffelComment.CREATOR);
         upwaffels = in.readInt();
+        upwaffelDevices = new ArrayList<>();
+        in.readTypedList(upwaffelDevices, WaffelDevice.CREATOR);
         rating = in.readInt();
         description = in.readString();
-        topping = in.readString();
+        topping = new ArrayList<>();
+        in.readStringList(topping);
         consistency = in.readInt();
         imageUrl = in.readString();
     }
@@ -107,7 +113,7 @@ public class Waffel implements Parcelable {
         return description;
     }
 
-    public String getTopping() {
+    public ArrayList<String> getTopping() {
         return topping;
     }
 
@@ -127,10 +133,13 @@ public class Waffel implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
+        parcel.writeLong(date.getTime());
+        parcel.writeTypedList(comments);
         parcel.writeInt(upwaffels);
+        parcel.writeTypedList(upwaffelDevices);
         parcel.writeInt(rating);
         parcel.writeString(description);
-        parcel.writeString(topping);
+        parcel.writeStringList(topping);
         parcel.writeInt(consistency);
         parcel.writeString(imageUrl);
     }

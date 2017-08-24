@@ -16,4 +16,9 @@
     <string name="alright">Alright</string>
     <string name="wet">Wet</string>
     <string name="post_waffel">Post Waffel</string>
+    <string name="rating_insufficient">Please rate your waffel</string>
+    <string name="desc_insufficient">Please add a description to your waffel</string>
+    <string name="consistency_insufficient">Please select a waffel consistency</string>
+    <string name="waffel_uploaded">Waffel uploaded!</string>
+    <string name="waffel_error_upload">Error uploading waffel.</string>
 </resources>

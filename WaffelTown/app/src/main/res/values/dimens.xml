@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text sizes -->
+    <dimen name="date_size">30sp</dimen>
+    <dimen name="comment_text_size">20sp</dimen>
+    <dimen name="icons">45sp</dimen>
+</resources>

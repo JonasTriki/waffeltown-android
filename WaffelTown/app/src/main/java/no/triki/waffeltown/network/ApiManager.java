@@ -39,10 +39,10 @@ public class ApiManager {
 
         @Multipart
         @POST("api")
-        Call<WaffelData<Waffel>> postWaffel(@Body int rating,
-                                            @Body String description,
-                                            @Body String topping,
-                                            @Body int consistency,
+        Call<WaffelData<Boolean>> postWaffel(@Part("rating") RequestBody rating,
+                                            @Part("description") RequestBody description,
+                                            @Part("topping") RequestBody topping,
+                                            @Part("consistency") RequestBody consistency,
                                             @Part("image\"; filename=\"waffel.png\"") RequestBody image);
 
         @POST("api/{id}/upwaffel")
