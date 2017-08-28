@@ -171,12 +171,21 @@ public class CameraActivity extends AppCompatActivity implements ICameraView, On
         presenter.recognizeWaffel(data);
     }
 
-    @Override
-    public void onWaffelOk() {
+    private void showWaffel() {
         layoutLoading.setVisibility(View.GONE);
         waffelBitmap = GlobalUtils.setImageViewWithByteArray(ivWaffel, waffelData);
         waffelData = null;
         waffelImageOk = true;
+    }
+
+    @Override
+    public void onWaffelOk() {
+        showWaffel();
+    }
+
+    @Override
+    public void onWaffelMaybe() {
+        showWaffel();
     }
 
     @Override

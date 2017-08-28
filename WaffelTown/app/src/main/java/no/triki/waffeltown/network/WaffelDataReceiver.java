@@ -67,6 +67,14 @@ public class WaffelDataReceiver {
             public void onResponse(Call<WaffelData<Boolean>> call, Response<WaffelData<Boolean>> response) {
                 if (response.isSuccessful()) {
                     listener.onWaffelDataReceived(response.body(), WaffelRestTypes.RECOGNIZE_WAFFEL);
+                } else {
+                    if (response.errorBody() != null) {
+                        try {
+                            Log.i("TAG", response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
 

@@ -31,8 +31,12 @@ public class CameraPresenter implements ICameraPresenter, OnWaffelDataReceivedLi
         switch (waffelRestType) {
             case RECOGNIZE_WAFFEL:
                 WaffelData<Boolean> recogData = (WaffelData<Boolean>)data;
-                if (recogData.getData() != null && recogData.getData()) {
-                    view.onWaffelOk();
+                if (recogData.getData() != null) {
+                    if (recogData.getData()) {
+                        view.onWaffelOk();
+                    } else {
+                        view.onWaffelMaybe();
+                    }
                 } else {
                     view.onWaffelNotRecognized();
                 }

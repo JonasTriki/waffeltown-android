@@ -59,6 +59,6 @@ public class SplashPresenter implements ISplashPresenter, OnNetworkStateChangedL
 
     @Override
     public void onWaffelDataError(Throwable t, WaffelRestTypes waffelRestType) {
-        // TODO: 23.08.2017 do we need to send message back to client?
+        t.printStackTrace();
     }
 }

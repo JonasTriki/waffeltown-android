@@ -11,8 +11,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.IOException;
+import java.util.List;
 
-import no.triki.waffeltown.shared.utils.GlobalUtils;
 import no.triki.waffeltown.ui.CameraActivity;
 
 /**
@@ -46,6 +46,15 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             camera = getCameraInstance();
             if (camera != null) {
                 Camera.Parameters params = camera.getParameters();
+
+                // Set size to the first size w/height 480px.
+                List<Camera.Size> sizes = params.getSupportedPictureSizes();
+                for (int i = 0; i < sizes.size(); i++) {
+                    if (sizes.get(i).height == 480) {
+                        params.setPictureSize(sizes.get(i).width, sizes.get(i).height);
+                        break;
+                    }
+                }
                 params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
                 camera.setParameters(params);
                 camera.setDisplayOrientation(90);

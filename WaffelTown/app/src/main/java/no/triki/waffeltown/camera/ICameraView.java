@@ -6,6 +6,7 @@ package no.triki.waffeltown.camera;
 
 public interface ICameraView {
     void onWaffelOk();
+    void onWaffelMaybe();
     void onWaffelNotRecognized();
     void onWaffelUploaded();
     void onWaffelErrorUploading();
